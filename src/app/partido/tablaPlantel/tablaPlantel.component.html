@@ -1,0 +1,29 @@
+
+    <table class="table table-responsive table-bordered small" style="margin-top: 20px;">
+      <thead>
+          <tr> 
+             
+            <th class="text-center">Nombre</th>
+            <th class="text-center">Apellido</th>          
+            <th class="text-center">Posicion</th>
+            <th class="text-center">Apodo</th>
+            <th class="text-center">Dorsal</th>
+            <th class="text-center">Altura</th>
+            <th class="text-center">Valoracion</th>
+            <th class="text-center">Fecha Nac</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of plantel">
+          <td class="text-right">{{item.nombre}}</td>
+          <td class="text-right">{{item.apellido}}</td>  
+          <td class="text-right">{{item.posicion}}</td>  
+          <td class="text-right">{{item.apodo}} </td>  
+          <td class="text-right">{{item.dorsal}} </td> 
+          <td class="text-right">{{item.estatura}} </td>   
+          <td class="text-right">{{item.valoracion}} </td>  
+          <td class="text-right">{{item.fechaNacimiento |date:'dd/MM/yyyy'}}</td> 
+      </tr>
+    </tbody>
+  </table>

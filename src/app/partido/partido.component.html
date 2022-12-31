@@ -1,0 +1,167 @@
+<!-- 
+<section class="intro">
+    <div class="bg-image h-100" style="background-image: url(https://mdbootstrap.com/img/Photos/new-templates/glassmorphism-article/img7.jpg);">
+      <div class="mask d-flex align-items-center h-100">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="card mask-custom">
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-borderless text-white mb-0">
+                      <thead>
+                        <tr>
+                          <th scope="col">EMPLOYEES</th>
+                          <th scope="col">POSITION</th>
+                          <th scope="col">CONTACTS</th>
+                          <th scope="col">AGE</th>
+                          <th scope="col">ADDRESS</th>
+                          <th scope="col">SALARY</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">Tiger Nixon</th>
+                          <td>System Architect</td>
+                          <td>tnixon12@example.com</td>
+                          <td>61</td>
+                          <td>Edinburgh</td>
+                          <td>$320,800</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Sonya Frost</th>
+                          <td>Software Engineer</td>
+                          <td>sfrost34@example.com</td>
+                          <td>23</td>
+                          <td>Edinburgh</td>
+                          <td>$103,600</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Jena Gaines</th>
+                          <td>Office Manager</td>
+                          <td>jgaines75@example.com</td>
+                          <td>30</td>
+                          <td>London</td>
+                          <td>$90,560</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Quinn Flynn</th>
+                          <td>Support Lead</td>
+                          <td>qflyn09@example.com</td>
+                          <td>22</td>
+                          <td>Edinburgh</td>
+                          <td>$342,000</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Charde Marshall</th>
+                          <td>Regional Director</td>
+                          <td>cmarshall28@example.com</td>
+                          <td>36</td>
+                          <td>San Francisco</td>
+                          <td>$470,600</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Haley Kennedy</th>
+                          <td>Senior Marketing Designer</td>
+                          <td>hkennedy63@example.com</td>
+                          <td>43</td>
+                          <td>London</td>
+                          <td>$313,500</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Tatyana Fitzpatrick</th>
+                          <td>Regional Director</td>
+                          <td>tfitzpatrick00@example.com</td>
+                          <td>19</td>
+                          <td>Warsaw</td>
+                          <td>$385,750</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <div class="container" [ngClass]="{'belgrano':equipoLocal?.nombreEquipo == 'Belgrano' ||equipoVisitante?.nombreEquipo == 'Belgrano' }">
+    <div class="form-group row ">
+      <div class="col-sm-12 ">
+        <img src="">
+      </div>
+      <div class="titulo2 col-sm-12 border border-dark">
+        <h3>Equipos a enfrentarse</h3>
+      </div>
+    </div>
+    <div class="form-group row mt-4">
+      <h4 class="col-sm-6">Local</h4>
+      <h4 class="col-sm-6">Visitante</h4>
+      <select class="col-sm-4  btn btn-success dropdown-toggle" id="combo" (change)="obtenerEquipoLocal($event)">
+        <option hidden  selected>Seleccione un equipo</option>
+        <option *ngFor="let e of ListaEquipos" >{{e.nombreEquipo}}</option>
+      </select>
+      <div class="col-sm-2"></div>
+      <select class="col-sm-4 btn btn-success dropdown-toggle" id="combo" (change)="obtenerEquipoVisitante($event)" >
+        <option hidden  selected>Seleccione un equipo</option>
+        <option *ngFor="let e of ListaEquipos" >{{e.nombreEquipo}}</option>
+      </select>
+    </div>
+
+    <div class="form-group row ">
+      <div class="col-sm-6 mt-4">
+        <p>Plantel local</p>
+      </div>
+      <div class="col-sm-6 mt-4">
+        <p>Plantel visitante</p>
+      </div>
+    </div>
+
+    <div class="form-group row ">
+      <div class="col-md-6 table-responsive  ">
+        <app-tablaPlantel [plantel]="plantelLocal"></app-tablaPlantel>
+      </div>
+      <div class="col-sm-6  table-responsive ">
+        <app-tablaPlantel [plantel]="plantelVisitante"></app-tablaPlantel>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-outline-success col-sm-12 mb-4 mt-4 " (click)="simularPartido()">Simular partido ahora</button>
+
+    <section class="intro" *ngIf="VerResultado=='SI'">
+      <div class="bg-image h-100" style="background-image: url(https://mdbootstrap.com/img/Photos/new-templates/glassmorphism-article/img7.jpg);">
+        <div class="mask d-flex align-items-center h-100">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-10">
+                <div class="card mask-custom">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-borderless text-white mb-0 row">
+                        <thead>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="col-0" style="color:yellow;">FINAL</td>
+                            <td class="col-2">{{equipoLocal?.nombreEquipo}}</td>
+                            <td class="col-1">{{golesLocal}}</td>
+                            <td class="col-1">{{golesVisitante}}</td>
+                            <td class="col-2">{{equipoVisitante?.nombreEquipo}}</td>
+                            <td>{{resultadoSimulacion}}</td>                            
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>    
+
